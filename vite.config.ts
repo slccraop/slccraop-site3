@@ -1,12 +1,11 @@
-import { defineConfig } from 'vitest/config'
+import { defineConfig, loadEnv } from 'vitest/config'
 import react from '@vitejs/plugin-react'
 
-// Base path for the site.
-// Set VITE_BASE_PATH env var to customize (e.g., '/slccraop-site3/' for GitHub Pages subpath).
-// Defaults to '/' for Cloudflare Pages root deployment.
-const basePath = import.meta.env.VITE_BASE_PATH || '/'
-
 export default defineConfig(({ mode }) => {
+  // Load env vars (from .env files and process.env) for this mode
+  const env = loadEnv(mode, process.cwd(), '')
+  const basePath = env.VITE_BASE_PATH || '/'
+
   const sample = mode === 'sample'
   // Use the configured base path; override for sample preview to './'
   const base = sample ? './' : basePath

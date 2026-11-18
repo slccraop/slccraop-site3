@@ -1,15 +1,15 @@
-import { defineConfig } from 'vitest/config';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vitest/config'
+import react from '@vitejs/plugin-react'
 
 // Base path for the site.
 // Set VITE_BASE_PATH env var to customize (e.g., '/slccraop-site3/' for GitHub Pages subpath).
 // Defaults to '/' for Cloudflare Pages root deployment.
-const basePath = import.env.VITE_BASE_PATH || '/';
+const basePath = import.meta.env.VITE_BASE_PATH || '/'
 
 export default defineConfig(({ mode }) => {
-  const sample = mode === 'sample';
+  const sample = mode === 'sample'
   // Use the configured base path; override for sample preview to './'
-  const base = sample ? './' : basePath;
+  const base = sample ? './' : basePath
 
   return {
     plugins: [react()],
@@ -24,6 +24,6 @@ export default defineConfig(({ mode }) => {
         ? { rollupOptions: { output: { format: 'iife' as const, inlineDynamicImports: true } } }
         : {}),
     },
-    test: { environment: 'node', include: ['src/**/*.test.{ts,tsx}'] },
-  };
-});
+    test: { environment: 'node', include: ['src/**/*.test.{ts,txs}'] },
+  }
+})
